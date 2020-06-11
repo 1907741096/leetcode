@@ -6,17 +6,14 @@ func dailyTemperatures(T []int) []int {
 	arr := make([]int, length)
 	tHash := make(map[int][]int)
 	for i := 0; i < length; i ++ {
-		for t, indexArr := range tHash {
+		for t, _ := range tHash {
 			if t < T[i] {
-				for j := 0; j < len(indexArr); j ++ {
-					if arr[indexArr[j]] == 0 {
-						arr[indexArr[j]] = i - indexArr[j]
-						if j >= len(tHash[t]) - 1 {
-							tHash[t] = append(tHash[t][0: j], []int{}...)
-						} else {
-							tHash[t] = append(tHash[t][0: j], tHash[t][j + 1: len(tHash[t])]...)
-						}
-						j --
+				for len(tHash[t]) != 0 {
+					arr[tHash[t][0]] = i - tHash[t][0]
+					if len(tHash[t]) == 1 {
+						tHash[t] = []int{}
+					} else {
+						tHash[t] = tHash[t][1:]
 					}
 				}
 			}
