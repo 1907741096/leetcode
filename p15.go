@@ -11,6 +11,9 @@ func threeSum(nums []int) [][]int {
 	}
 	length := len(nums)
 	for i := 0; i < length; i ++ {
+		if i > 0 && nums[i] == nums[i - 1] {
+			continue
+		}
 		for j := i + 1; j < length; j ++ {
 			k := 0 - nums[i] - nums[j]
 			if index, ok := hastSet[k]; ok && index != i && index != j {
