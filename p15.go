@@ -1,8 +1,12 @@
 package main
 
-import "strconv"
+import (
+	"sort"
+	"strconv"
+)
 
 func threeSum(nums []int) [][]int {
+	sort.Ints(nums)
 	arr := [][]int{}
 	arrSet := make(map[string]int)
 	hastSet := make(map[int]int)
@@ -15,6 +19,9 @@ func threeSum(nums []int) [][]int {
 			continue
 		}
 		for j := i + 1; j < length; j ++ {
+			if j > i + 1 && nums[j] == nums[j - 1] {
+				continue
+			}
 			k := 0 - nums[i] - nums[j]
 			if index, ok := hastSet[k]; ok && index != i && index != j {
 				str := getThreeSortString(nums[i], nums[j], k)
