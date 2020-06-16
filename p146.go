@@ -11,19 +11,19 @@ type LRUCache struct {
 }
 
 
-func Constructor(capacity int) LRUCache {
-	l := LRUCache{
-		capacity:capacity,
-		hashSet:make(map[int]int),
-		list: []int{},
-		listIndex:make(map[int]int),
-		count: 0,
-		length: 0,
-		index: 0,
-	}
-
-	return l
-}
+//func Constructor(capacity int) LRUCache {
+//	l := LRUCache{
+//		capacity:capacity,
+//		hashSet:make(map[int]int),
+//		list: []int{},
+//		listIndex:make(map[int]int),
+//		count: 0,
+//		length: 0,
+//		index: 0,
+//	}
+//
+//	return l
+//}
 
 
 func (this *LRUCache) Get(key int) int {
