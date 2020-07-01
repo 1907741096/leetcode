@@ -12,8 +12,8 @@ func fib(n int) int {
 	c := 1
 	for i := 2; i < n; i ++ {
 		c = a + b
-		b = c % 1000000007
 		a = b
+		b = c % 1000000007
 	}
-	return c
+	return c % 1000000007
 }
