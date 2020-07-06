@@ -23,7 +23,3 @@ func quickMi(x float64, n int) float64 {
 		return quickMi(x * x, n / 2) * x
 	}
 }
-
-func main() {
-	fmt.Println(myPow(2, 6))
-}

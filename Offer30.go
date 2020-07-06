@@ -1,5 +1,4 @@
 package main
-
 type MinStack struct {
 	list []int
 	minNum int
@@ -39,13 +38,12 @@ func (this *MinStack) Pop()  {
 	this.list = this.list[0: this.len]
 }
 
-
 func (this *MinStack) Top() int {
 	return this.list[this.len - 1]
 }
 
 
-func (this *MinStack) GetMin() int {
+func (this *MinStack) Min() int {
 	return this.minNum
 }
 
@@ -56,5 +54,5 @@ func (this *MinStack) GetMin() int {
  * obj.Push(x);
  * obj.Pop();
  * param_3 := obj.Top();
- * param_4 := obj.GetMin();
+ * param_4 := obj.Min();
  */
