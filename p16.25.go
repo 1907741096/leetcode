@@ -36,6 +36,7 @@ func Constructor(capacity int) LRUCache {
 	}
 }
 
+
 func (this *LRUCache) Get(key int) int {
 	if node, ok := this.hashMap[key]; ok {
 		this.moveHead(node)
