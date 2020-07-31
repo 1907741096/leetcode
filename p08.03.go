@@ -1,6 +1,7 @@
 package main
 
 var minNum int
+
 var numsArr []int
 
 func findMagicIndex(nums []int) int {
