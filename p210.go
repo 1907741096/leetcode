@@ -1,19 +1,21 @@
 package main
 
-var classStatusList []int
-var preClassList [][]int
-var nextClassList [][]int
-var preClassCountList []int
-var sumCount int
-var flag bool
+//var classStatusList []int
+//var preClassList [][]int
+//var nextClassList [][]int
+//var preClassCountList []int
+//var sumCount int
+//var flag bool
+var resList []int
 
-func canFinish(numCourses int, prerequisites [][]int) bool {
+func findOrder(numCourses int, prerequisites [][]int) []int {
 	flag = true
 	sumCount = 0
 	classStatusList = make([]int, numCourses) // 0-未遍历 1-遍历中 2-已遍历
 	preClassList = make([][]int, numCourses) // 节点对应前置课程
 	nextClassList = make([][]int, numCourses) // 节点对应后置课程
 	preClassCountList = make([]int, numCourses) // 节点对应前置课程数目
+	resList = []int{}
 
 	for _, p := range prerequisites {
 		// 加入前置课程
@@ -29,6 +31,9 @@ func canFinish(numCourses int, prerequisites [][]int) bool {
 	//	// 将当前节点加入栈中
 	//	dfs(p[0])
 	//}
+	//if !flag {
+	//	return []int{}
+	//}
 
 	for i, p := range preClassList {
 		// 无前置节点，进入广度遍历
@@ -37,10 +42,10 @@ func canFinish(numCourses int, prerequisites [][]int) bool {
 		}
 	}
 	if numCourses != sumCount {
-		return false
+		return []int{}
 	}
 
-	return flag
+	return resList
 }
 
 // 深度优先
@@ -74,11 +79,13 @@ func dfs(nowClass int) {
 	}
 	// 遍历完成，当前节点置为已完成
 	classStatusList[nowClass] = 2
+	resList = append(resList, nowClass)
 }
 
 // 广度优先
 func bfs(nowClass int) {
 	sumCount ++
+	resList = append(resList, nowClass)
 	queue := []int{nowClass}
 	for len(queue) != 0 {
 		nowClass = queue[0]
@@ -91,6 +98,7 @@ func bfs(nowClass int) {
 				queue = append(queue, v)
 				// 完成课程节点+1
 				sumCount ++
+				resList = append(resList, v)
 			}
 		}
 	}
