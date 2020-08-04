@@ -84,9 +84,12 @@ func bfs(nowClass int) {
 		nowClass = queue[0]
 		queue = queue[1:]
 		for _, v := range nextClassList[nowClass] {
+			// 前置数-1
 			preClassCountList[v] --
 			if preClassCountList[v] == 0 {
+				// 前置课全部学完时，加入队列
 				queue = append(queue, v)
+				// 完成课程节点+1
 				sumCount ++
 			}
 		}
