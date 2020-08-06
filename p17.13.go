@@ -41,6 +41,7 @@ func respace(dictionary []string, sentence string) int {
 	return dp[length]
 }
 
+// 字典树
 type Trie struct {
 	next [26]*Trie
 	isEnd bool
