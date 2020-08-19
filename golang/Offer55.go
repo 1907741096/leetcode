@@ -27,7 +27,3 @@ func max(x, y int) int {
 	}
 	return y
 }
-
-func isBalanced(root *TreeNode) bool {
-
-}
