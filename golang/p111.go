@@ -8,7 +8,6 @@ package main
  *     Right *TreeNode
  * }
  */
-
 var depth int
 
 func minDepth(root *TreeNode) int {
