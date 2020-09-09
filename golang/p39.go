@@ -7,21 +7,17 @@ var ca []int
 func combinationSum(candidates []int, target int) [][]int {
 	resArr = [][]int{}
 	ca = candidates
-	length := len(ca)
-	for i := 0; i < length; i ++ {
-		getCombine(i, length, target - ca[i], []int{ca[i]})
-	}
+	getCombine(0, len(ca), target, []int{})
 	return resArr
 }
 
 func getCombine(i, length int, target int, list []int) {
-	if target < 0 || i >= length {
-		return
-	}
-	if target == 0 {
-		resArr = append(resArr, list)
-	} else {
-		for j := i; j < length; j ++ {
+	for j := i; j < length; j ++ {
+		if target - ca[j] < 0 {
+			continue
+		} else if target - ca[j] == 0 {
+			resArr = append(resArr, append(list, ca[j]))
+		} else {
 			newList := make([]int, len(list))
 			copy(newList, list)
 			newList = append(newList, ca[j])
