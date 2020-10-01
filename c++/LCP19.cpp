@@ -3,7 +3,8 @@ public:
 	int minimumOperations(string leaves) {
 		int n = leaves.size();
 		int a = (leaves[0] == 'y');
-		int b, c = INT_MAX;
+		int b = INT_MAX;
+		int c = INT_MAX;
 		for (int i = 1; i < n; ++i) {
 			int isRed = (leaves[i] == 'r');
 			int isYellow = (leaves[i] == 'y');
