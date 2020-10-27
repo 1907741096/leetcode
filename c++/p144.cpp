@@ -16,16 +16,18 @@ public:
     vector<int> preorderTraversal(TreeNode* root) {
         std::stack<TreeNode*> stk;
         stk.push(root);
-        while (!stk.empty()) {
-            TreeNode* node = stk.top();
-            stk.pop();
-            if (node == nullptr) {
-                continue;
-            }
-            res.push_back(node->val);
-            stk.push(node->right);
-		    stk.push(node->left);
-        }
+		while (root != nullptr || !stk.empty()) {
+			if (root != nullptr) {
+				stk.push(root);
+				res.push_back(root->val);
+				root = root->left;
+			}
+			else {
+				root = stk.top();
+				stk.pop();
+				root = root->right;
+			}
+		}
         return res;
     }
 

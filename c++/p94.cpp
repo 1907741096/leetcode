@@ -30,10 +30,8 @@ public:
 			else {
 				root = stk.top();
 				stk.pop();
-				if (root != nullptr) {
-					res.push_back(root->val);
-					root = root->right;
-				}
+				res.push_back(root->val);
+				root = root->right;
 			}
 		}
 		return res;

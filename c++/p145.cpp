@@ -14,28 +14,26 @@ public:
     vector<int> res;
 
 	vector<int> postorderTraversal(TreeNode* root) {
-		vector<int> res;
-		if (root == nullptr) {
-			return res;
-		}
-
-		stack<TreeNode*> stk;
-		TreeNode* prev = nullptr;
+		std::stack<TreeNode*> stk;
+		TreeNode* pre;
 		while (root != nullptr || !stk.empty()) {
-			while (root != nullptr) {
-				stk.emplace(root);
+			if (root != nullptr) {
+				stk.push(root);
 				root = root->left;
 			}
-			root = stk.top();
-			stk.pop();
-			if (root->right == nullptr || root->right == prev) {
-				res.emplace_back(root->val);
-				prev = root;
-				root = nullptr;
-			}
 			else {
-				stk.emplace(root);
-				root = root->right;
+				root = stk.top();
+				if (root->right != nullptr && root->right != pre) {
+					root = root->right;
+					stk.push(root);
+					root = root->left;
+				}
+				else {
+					stk.pop();
+					res.push_back(root->val);
+					pre = root;
+					root = nullptr;
+				}
 			}
 		}
 		return res;
