@@ -18,23 +18,34 @@ struct TreeNode {
  */
 class Solution {
 
-private:
-    vector<int> res;
-
 public:
-    vector<int> inorderTraversal(TreeNode* root) {
-         res = new vector<int>;
-         midOrder(root);
-         return res;
-    }
+    vector<int> res;
+	vector<int> inorderTraversal(TreeNode* root) {
+		std::stack<TreeNode*> stk;
+		while (root != nullptr || !stk.empty()) {
+			if (root != nullptr) {
+				stk.push(root);
+				root = root->left;
+			}
+			else {
+				root = stk.top();
+				stk.pop();
+				if (root != nullptr) {
+					res.push_back(root->val);
+					root = root->right;
+				}
+			}
+		}
+		return res;
+	}
 
     void midOrder(TreeNode* node) {
         if (node == NULL) {
             return;
         }
-        midOrder(node.left);
-        res.push_back(node.val);
-        midOrder(node.right);
+        midOrder(node->left);
+        res.push_back(node->val);
+        midOrder(node->right);
     }
 
 
