@@ -30,24 +30,24 @@ func findMode(root *TreeNode) []int {
 		}
 		num = n
 	}
-	cur := root
-	for cur != nil {
-		if cur.Left == nil {
-			update(cur.Val)
-			cur = cur.Right
-			continue
+	queue := []*TreeNode{root}
+	for len(queue) != 0 {
+		nowQueue := queue[0]
+		queue = queue[1:]
+		update(nowQueue.Val)
+		if nowQueue.Left != nil {
+			if nowQueue.Val == nowQueue.Left.Val {
+				queue = append([]*TreeNode{nowQueue.Left}, queue...)
+			} else {
+				queue = append(queue, nowQueue.Left)
+			}
 		}
-		pre := cur.Left
-		for pre.Right != nil && pre.Right != cur {
-			pre = pre.Right
-		}
-		if pre.Right == nil {
-			pre.Right = cur
-			cur = cur.Left
-		} else {
-			pre.Right = nil
-			update(cur.Val)
-			cur = cur.Right
+		if nowQueue.Right != nil {
+			if nowQueue.Val == nowQueue.Right.Val {
+				queue = append([]*TreeNode{nowQueue.Right}, queue...)
+			} else {
+				queue = append(queue, nowQueue.Right)
+			}
 		}
 	}
 	return res
