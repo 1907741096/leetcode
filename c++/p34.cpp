@@ -3,10 +3,11 @@ public:
 	vector<int> searchRange(vector<int>& nums, int target) {
 		vector<int> res;
 		int mid, left = 0, right = nums.size() - 1;
-		while (left < right) {
+		while (left <= right) {
 			mid = left + (right - left) / 2;
 			if (nums[mid] == target) {
 				if (mid == 0 || nums[mid - 1] < target) {
+					res.push_back(mid);
 					break;
 				}
 				else {
@@ -20,17 +21,17 @@ public:
 				right = mid - 1;
 			}
 		}
-		res.push_back(mid);
 		left = 0;
 		right = nums.size() - 1;
-		while (left < right) {
+		while (left <= right) {
 			mid = left + (right - left) / 2;
 			if (nums[mid] == target) {
-				if (mid == 0 || nums[mid - 1] < target) {
+				if (mid == nums.size() - 1 || nums[mid + 1] > target) {
+					res.push_back(mid);
 					break;
 				}
 				else {
-					right = mid - 1;
+					left = mid + 1;
 				}
 			}
 			else if (nums[mid] < target) {
@@ -40,7 +41,9 @@ public:
 				right = mid - 1;
 			}
 		}
-		res.push_back(mid);
+		if (res.size() == 0) {
+			return vector<int>{ -1, -1 };
+		}
 		return res;
 	}
 };
