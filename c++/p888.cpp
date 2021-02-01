@@ -7,11 +7,7 @@ public:
 		int sumA = accumulate(A.begin(), A.end(), 0), sumB = accumulate(B.begin(), B.end(), 0);
 		map<int, int> mapA;
 		for (int i = 0; i < A.size(); i ++) {
-			sumA += A[i];
 			mapA.insert(make_pair(A[i], i));
-		}
-		for (int &i : B) {
-			sumB += i;
 		}
 		int x;
 		for (int& i : B) {
