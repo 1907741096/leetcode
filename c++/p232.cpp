@@ -14,21 +14,25 @@ public:
     /** Removes the element from in front of queue and returns that element. */
     int pop() {
         if (stk2.empty()) {
-			while (!stk1.empty()) {
-				stk2.push(stk1.pop());
-			}
+            while (!stk1.empty()) {
+                stk2.push(stk1.top());
+                stk1.pop();
+            }
         }
-        return stk2.pop();
+        int n = stk2.top();
+        stk2.pop();
+        return n;
     }
 
     /** Get the front element. */
     int peek() {
-		if (stk2.empty()) {
-			while (!stk1.empty()) {
-				stk2.push(stk1.pop());
-			}
-		}
-		return stk2.top();
+        if (stk2.empty()) {
+            while (!stk1.empty()) {
+                stk2.push(stk1.top());
+                stk1.pop();
+            }
+        }
+        return stk2.top();
     }
 
     /** Returns whether the queue is empty. */
